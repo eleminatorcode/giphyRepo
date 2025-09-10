@@ -56,15 +56,14 @@ class _GiphyPageState extends State<GiphyPage> {
     });
 
     try {
-      const pageSize = 30;
       if (_offset >= _total) {
         setState(() => _loading = false);
         return;
       }
       final result = _query.isEmpty
-          ? await widget.repo.trending(offset: _offset, limit: pageSize)
+          ? await widget.repo.trending(offset: _offset)
           : await widget.repo.search(
-          query: _query, offset: _offset, limit: pageSize);
+          query: _query, offset: _offset);
       final (items, total) = result;
       setState(() {
         _items.addAll(items);
@@ -127,7 +126,7 @@ class _GiphyPageState extends State<GiphyPage> {
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
               ),
-              itemCount: _items.length + (_loading ? 6 : 0),
+              itemCount: _items.length ,
               itemBuilder: (_, i) {
                 if (i >= _items.length) {
                   return const DecoratedBox(

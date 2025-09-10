@@ -27,7 +27,6 @@ class GifRepo {
 
   Future<(List<GifData> items, int totalCount)> trending({
     required int offset,
-    int limit = 24,
     String rating = 'g',
     String bundle = 'messaging_non_clips',
     String? countryCode,
@@ -36,7 +35,6 @@ class GifRepo {
       path: '${_base.path}/trending',
       queryParameters: {
         'api_key': apiKey,
-        'limit': '$limit',
         'offset': '$offset',
         'rating': rating,
         'bundle': bundle,
@@ -49,7 +47,6 @@ class GifRepo {
   Future<(List<GifData> items, int totalCount)> search({
     required String query,
     required int offset,
-    int limit = 24,
     String rating = 'g',
     String lang = 'en',
     String bundle = 'messaging_non_clips',
@@ -60,7 +57,6 @@ class GifRepo {
       queryParameters: {
         'api_key': apiKey,
         'q': query,
-        'limit': '$limit',
         'offset': '$offset',
         'rating': rating,
         'lang': lang,
